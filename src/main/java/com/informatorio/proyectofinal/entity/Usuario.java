@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
 
 @Entity
@@ -19,16 +20,19 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotEmpty(message = "El nombre no pude estar vacio.")
+    @NotEmpty(message = "El nombre no puede estar vacio.")
     private String nombre;
 
-    @NotEmpty(message = "El apellido no pude estar vacio.")
+    @NotEmpty(message = "El apellido no puede estar vacio.")
     private String apellido;
 
+    @NotEmpty(message = "El email no puede estar vacio.")
     @Email(regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
     @Column(unique = true)
     private String email;
 
+    @NotEmpty(message = "El password no puede estar vacio.")
+    @Size(min = 6, max = 30)
     private String password;
 
     @CreationTimestamp

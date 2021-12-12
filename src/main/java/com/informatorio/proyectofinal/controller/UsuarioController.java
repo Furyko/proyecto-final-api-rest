@@ -37,7 +37,7 @@ public class UsuarioController {
     //}
 
     @PostMapping
-    public ResponseEntity<?> crearUsuario(@Valid @RequestBody Usuario usuario)  {
+    public ResponseEntity<?> crearUsuario(@Valid @RequestBody Usuario usuario) {
         return new ResponseEntity<>(usuarioRepository.save(usuario), HttpStatus.CREATED);
     }
 }
