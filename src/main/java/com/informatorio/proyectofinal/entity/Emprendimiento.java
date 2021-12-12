@@ -14,7 +14,7 @@ public class Emprendimiento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotEmpty(message = "El nombre no puede esta vacio")
+    @NotEmpty(message = "El nombre no puede estar vacio")
     private String nombre;
     
     private String descripcion;
