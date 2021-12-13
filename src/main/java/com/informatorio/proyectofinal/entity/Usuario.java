@@ -6,9 +6,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -44,8 +49,11 @@ public class Usuario {
 
     private String pais;
 
-    @Enumerated(EnumType.STRING) 
+    @Enumerated(EnumType.STRING)
     private TipoUsuario tipo;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Emprendimiento> emprendimientos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -122,5 +130,15 @@ public class Usuario {
 
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
+    }
+
+    public void agregarEmprendimiento(Emprendimiento emprendimiento) {
+        emprendimientos.add(emprendimiento);
+        emprendimiento.setUsuario(this);
+    }
+
+    public void removerEmprendimiento(Emprendimiento emprendimiento) {
+        emprendimientos.remove(emprendimiento);
+        emprendimiento.setUsuario(null);
     }
 }

@@ -1,30 +1,18 @@
-package com.informatorio.proyectofinal.entity;
+package com.informatorio.proyectofinal.dto;
 
-import java.time.LocalDateTime;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
-import org.hibernate.annotations.CreationTimestamp;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
-@Entity
-public class Emprendimiento {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class EmprendimientoOperacion {
     @NotEmpty(message = "El nombre no puede estar vacio")
     private String nombre;
     
     private String descripcion;
     
     private String contenido;
-    
-    @CreationTimestamp
-    private LocalDateTime fechaDeCreacion;
     
     private double objetivo;
     
@@ -33,13 +21,11 @@ public class Emprendimiento {
     private String urlCapturas;
     
     private String tags;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Usuario usuario;
-
-    public Long getId() {
-        return id;
-    }
+    
+    @NotNull
+    @Positive
+    @JsonProperty(value = "usuario_id")
+    private Long usuario_id;
 
     public String getNombre() {
         return nombre;
@@ -63,14 +49,6 @@ public class Emprendimiento {
 
     public void setContenido(String contenido) {
         this.contenido = contenido;
-    }
-
-    public LocalDateTime getFechaDeCreacion() {
-        return fechaDeCreacion;
-    }
-
-    public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
-        this.fechaDeCreacion = fechaDeCreacion;
     }
 
     public double getObjetivo() {
@@ -105,11 +83,11 @@ public class Emprendimiento {
         this.tags = tags;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Long getUsuario_id() {
+        return usuario_id;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuario_id(Long usuario_id) {
+        this.usuario_id = usuario_id;
     }
 }

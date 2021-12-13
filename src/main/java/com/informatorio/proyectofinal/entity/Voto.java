@@ -15,7 +15,7 @@ public class Voto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String generadorPor;
+    private String generadoPor;
     
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
@@ -28,11 +28,11 @@ public class Voto {
     }
 
     public String getGeneradoPor() {
-        return generadorPor;
+        return generadoPor;
     }
 
     public void setGeneadoPor(String generadoPor) {
-        this.generadorPor = generadoPor;
+        this.generadoPor = generadoPor;
     }
 
     public Usuario getUsuario() {
