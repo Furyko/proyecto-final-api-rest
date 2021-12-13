@@ -1,5 +1,6 @@
 package com.informatorio.proyectofinal.dto;
 
+import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -20,7 +21,9 @@ public class EmprendimientoOperacion {
     
     private String urlCapturas;
     
-    private String tags;
+    //private String tags;
+
+    private List<Long> tags;
     
     @NotNull
     @Positive
@@ -75,11 +78,11 @@ public class EmprendimientoOperacion {
         this.urlCapturas = urlCapturas;
     }
 
-    public String getTags() {
+    public List<Long> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(List<Long> tags) {
         this.tags = tags;
     }
 

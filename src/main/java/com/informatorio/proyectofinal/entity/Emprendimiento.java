@@ -1,12 +1,18 @@
 package com.informatorio.proyectofinal.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
 import javax.validation.constraints.NotEmpty;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -32,7 +38,12 @@ public class Emprendimiento {
     
     private String urlCapturas;
     
-    private String tags;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "emprendimiento_id", 
+            joinColumns = @JoinColumn(name = "emprendimiento_id"), 
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
@@ -97,12 +108,18 @@ public class Emprendimiento {
         this.urlCapturas = urlCapturas;
     }
 
-    public String getTags() {
+    public List<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
-        this.tags = tags;
+    public void agregarTag(Tag tag) {
+        tags.add(tag);
+        tag.getEmprendimientos().add(this);
+    }
+
+    public void removerTag(Tag tag) {
+        tags.remove(tag);
+        tag.getEmprendimientos().remove(null);
     }
 
     public Usuario getUsuario() {

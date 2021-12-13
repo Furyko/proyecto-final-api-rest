@@ -2,7 +2,6 @@ package com.informatorio.proyectofinal.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import javax.validation.Valid;
 import com.informatorio.proyectofinal.entity.Usuario;
 import com.informatorio.proyectofinal.repository.UsuarioRepository;
