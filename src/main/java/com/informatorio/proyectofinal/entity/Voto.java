@@ -45,4 +45,12 @@ public class Voto {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public LocalDateTime getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
+    }
 }

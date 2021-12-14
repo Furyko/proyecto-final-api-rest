@@ -40,13 +40,6 @@ public class UsuarioController {
     //@DeleteMapping("{id}")
     //public ResponseEntity<?> eliminarUsuario(@PathVariable Long id) {}
 
-    //@GetMapping
-    //public @ResponseBody Iterable<Usuario> obtenerUsuariosDespuesDeFechaDada(
-    //        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaDesde) {
-    //            List<Emprendimientos emprendimientos 
-    //   return usuarioRepository.findAll();
-    //}
-
     //@PostMapping
     //public Usuario crearUsuario(@RequestBody Usuario usuario) {
     //    return usuarioRepository.save(usuario);
