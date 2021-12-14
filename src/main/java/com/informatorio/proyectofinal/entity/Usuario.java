@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Email;
 
@@ -23,37 +24,30 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     @NotEmpty(message = "El nombre no puede estar vacio.")
     private String nombre;
-
     @NotEmpty(message = "El apellido no puede estar vacio.")
     private String apellido;
-
     @NotEmpty(message = "El email no puede estar vacio.")
     @Email(regexp = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")
     @Column(unique = true)
     private String email;
-
     @NotEmpty(message = "El password no puede estar vacio.")
     @Size(min = 6, max = 30)
     private String password;
-
     @CreationTimestamp
     private LocalDateTime fechaDeCreacion;
-
+    @NotEmpty(message = "La ciudad no puede estar vacia.")
     private String ciudad;
-
+    @NotEmpty(message = "La provincia no puede estar vacia.")
     private String provincia;
-
+    @NotEmpty(message = "El pais no puede estar vacio.")
     private String pais;
-
+    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipo;
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Emprendimiento> emprendimientos = new ArrayList<>();
-
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Voto> votos = new ArrayList<>();
 
