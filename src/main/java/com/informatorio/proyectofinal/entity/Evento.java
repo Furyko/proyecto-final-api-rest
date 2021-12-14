@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -20,6 +21,7 @@ public class Evento {
     @CreationTimestamp
     private LocalDateTime fechaDeCreacion;
     
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaDeCierre;
     
     @Enumerated(EnumType.STRING)
@@ -39,6 +41,14 @@ public class Evento {
 
     public void setDetalles(String detalles) {
         this.detalles = detalles;
+    }
+
+    public LocalDateTime getFechaDeCreacion() {
+        return fechaDeCreacion;
+    }
+
+    public void setFechaDeCreacion(LocalDateTime fechaDeCreacion) {
+        this.fechaDeCreacion = fechaDeCreacion;
     }
 
     public LocalDateTime getFechaDeCierre() {
