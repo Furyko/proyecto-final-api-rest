@@ -2,6 +2,8 @@ package com.informatorio.proyectofinal.entity;
 
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,9 +17,10 @@ public class Voto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String generadoPor;
+    @Enumerated(EnumType.STRING)
+    private GeneradoPor generadoPor;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
     
     @CreationTimestamp
@@ -27,11 +30,11 @@ public class Voto {
         return id;
     }
 
-    public String getGeneradoPor() {
+    public GeneradoPor getGeneradoPor() {
         return generadoPor;
     }
 
-    public void setGeneadoPor(String generadoPor) {
+    public void setGeneradoPor(GeneradoPor generadoPor) {
         this.generadoPor = generadoPor;
     }
 
@@ -42,5 +45,4 @@ public class Voto {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 }

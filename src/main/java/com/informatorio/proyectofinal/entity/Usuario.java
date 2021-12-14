@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import java.time.LocalDateTime;
@@ -54,6 +53,9 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Emprendimiento> emprendimientos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Voto> votos = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -140,5 +142,15 @@ public class Usuario {
     public void removerEmprendimiento(Emprendimiento emprendimiento) {
         emprendimientos.remove(emprendimiento);
         emprendimiento.setUsuario(null);
+    }
+
+    public void agregarVoto(Voto voto) {
+        votos.add(voto);
+        voto.setUsuario(this);
+    }
+
+    public void removerVoto(Voto voto) {
+        votos.remove(voto);
+        voto.setUsuario(null);
     }
 }
