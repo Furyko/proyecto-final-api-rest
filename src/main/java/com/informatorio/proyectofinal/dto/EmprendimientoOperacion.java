@@ -20,8 +20,6 @@ public class EmprendimientoOperacion {
     private boolean publicado;
     
     private String urlCapturas;
-    
-    //private String tags;
 
     private List<Long> tags;
     

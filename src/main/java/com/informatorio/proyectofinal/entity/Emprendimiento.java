@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinTable;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -21,30 +22,26 @@ public class Emprendimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     @NotEmpty(message = "El nombre no puede estar vacio")
     private String nombre;
-    
+    @NotEmpty(message = "La descripcion no puede estar vacia")
     private String descripcion;
-    
+    @NotEmpty(message = "El contenido no puede estar vacio")
     private String contenido;
-    
     @CreationTimestamp
     private LocalDateTime fechaDeCreacion;
-    
+    @NotNull
     private double objetivo;
-    
+    @NotNull
     private boolean publicado;
-    
+    @NotEmpty(message = "La url no puede estar vacia")
     private String urlCapturas;
-    
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "emprendimiento_id", 
             joinColumns = @JoinColumn(name = "emprendimiento_id"), 
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags = new ArrayList<>();
-
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
 
@@ -110,6 +107,10 @@ public class Emprendimiento {
 
     public List<Tag> getTags() {
         return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     public void agregarTag(Tag tag) {

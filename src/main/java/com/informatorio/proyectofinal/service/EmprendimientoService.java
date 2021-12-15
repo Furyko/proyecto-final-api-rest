@@ -13,6 +13,8 @@ import com.informatorio.proyectofinal.repository.TagRepository;
 import com.informatorio.proyectofinal.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -49,5 +51,24 @@ public class EmprendimientoService {
         emprendimiento.getTags().addAll(tags);
 
         return emprendimientoRepository.save(emprendimiento);
+    }
+
+    public ResponseEntity<Long> eliminarEmprendimiento(Long id) {
+        emprendimientoRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Emprendimiento> actualizarEmprendimiento(Long id, Emprendimiento detallesEmprendimiento){
+        Emprendimiento emprendimiento = emprendimientoRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No se encontró emprendimiento con el id " + "'" + id + "'"));
+        emprendimiento.setNombre(detallesEmprendimiento.getNombre());
+        emprendimiento.setDescripcion(detallesEmprendimiento.getDescripcion());
+        emprendimiento.setContenido(detallesEmprendimiento.getContenido());
+        emprendimiento.setObjetivo(detallesEmprendimiento.getObjetivo());
+        emprendimiento.setPublicado(detallesEmprendimiento.getPublicado());
+        emprendimiento.setUrlCapturas(detallesEmprendimiento.getUrlCapturas());
+        //emprendimiento.setTags(detallesEmprendimiento.getTags());
+        final Emprendimiento emprendimientoActualizado = emprendimientoRepository.save(emprendimiento);
+        return ResponseEntity.ok(emprendimientoActualizado);
     }
 }
