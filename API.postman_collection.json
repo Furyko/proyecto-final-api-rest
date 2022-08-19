@@ -11,27 +11,74 @@
 				{
 					"name": "Añadir usuario",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nombrecito\",\r\n    \"apellido\": \"Apellidito\",\r\n    \"email\": \"correito@gmail.com\",\r\n    \"password\": \"contraseñita\",\r\n    \"ciudad\": \"Tumbleton\",\r\n    \"provincia\": \"Formosa\",\r\n    \"pais\": \"Argentina\",\r\n    \"tipo\": \"USUARIO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Eliminar usuario por id",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Modificar usuario",
 					"request": {
-						"method": "GET",
+						"method": "PUT",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Rusty\",\r\n    \"apellido\": \"Oeste\",\r\n    \"email\": \"rustyoeste@gmail.com\",\r\n    \"password\": \"contraseña\",\r\n    \"fechaDeCreacion\": \"2021-12-15T18:45:47\",\r\n    \"ciudad\": \"Quitilipi\",\r\n    \"provincia\": \"Yermo\",\r\n    \"pais\": \"Francia\",\r\n    \"tipo\": \"OWNER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/usuarios/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -40,7 +87,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios"
+							]
+						}
 					},
 					"response": []
 				},
@@ -49,7 +105,23 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/usuarios/?ciudadDe=Quitilipi",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								""
+							],
+							"query": [
+								{
+									"key": "ciudadDe",
+									"value": "Quitilipi"
+								}
+							]
+						}
 					},
 					"response": []
 				},
@@ -58,7 +130,23 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/usuarios/?fechaDesde=2021-12-14",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"usuarios",
+								""
+							],
+							"query": [
+								{
+									"key": "fechaDesde",
+									"value": "2021-12-14"
+								}
+							]
+						}
 					},
 					"response": []
 				}
@@ -74,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nombre\": \"AquaFest\",\r\n    \"descripcion\": \"Festival del agua\",\r\n    \"contenido\": \"Agua jasjs\",\r\n    \"objetivo\": 4000.00,\r\n    \"publicado\": false,\r\n    \"urlCapturas\": \"https://youtube.com\",\r\n    \"tags\": \"#agua\",\r\n    \"usuario_id\": 1\r\n}",
+							"raw": "{\r\n    \"nombre\": \"Nombre del emprendimiento\",\r\n    \"descripcion\": \"Descripción del emprendimiento\",\r\n    \"contenido\": \"Cuerpo de la publicación\",\r\n    \"objetivo\": 16000.00,\r\n    \"publicado\": false,\r\n    \"urlCapturas\": \"https://url.com/urls_de_las_capturas\",\r\n    \"tags\": [1, 2],\r\n    \"usuario_id\": 2,\r\n    \"emprendimiento_id\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -97,9 +185,47 @@
 				{
 					"name": "Eliminar emprendimiento por id",
 					"request": {
-						"method": "GET",
+						"method": "DELETE",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/emprendimientos/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emprendimientos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar emprendimiento",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Nuevo nombre del emprendimiento\",\r\n    \"descripcion\": \"Nueva descripción del emprendimiento\",\r\n    \"contenido\": \"Nuevo cuerpo de la publicación\",\r\n    \"objetivo\": 12000.00,\r\n    \"publicado\": true,\r\n    \"urlCapturas\": \"https://url.com/nuevas_urls_de_las_capturas\",\r\n    \"usuario_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/emprendimientos/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emprendimientos",
+								"2"
+							]
+						}
 					},
 					"response": []
 				},
@@ -108,16 +234,34 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/emprendimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emprendimientos"
+							]
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "Modificar emprendimiento",
+					"name": "Consultar emprendimientos con tag dado",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/emprendimientos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"emprendimientos"
+							]
+						}
 					},
 					"response": []
 				}
@@ -129,9 +273,27 @@
 				{
 					"name": "Añadir voto",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"generadoPor\": \"MOBILE\",\r\n    \"usuario_id\": 1,\r\n    \"emprendimiento_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/votos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votos"
+							]
+						}
 					},
 					"response": []
 				},
@@ -140,7 +302,16 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "localhost:8080/votos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"votos"
+							]
+						}
 					},
 					"response": []
 				}
@@ -152,9 +323,27 @@
 				{
 					"name": "Añadir evento",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"detalles\": \"Detalles del evento, info de auspiciantes, premio\",\r\n    \"fechaDeCierre\": \"2021-12-13 07:00:58\",\r\n    \"estado\": \"ABIERTO\",\r\n    \"suscriptores\": \"suscriptores\",\r\n    \"premio\": 2000.00\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/eventos",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"eventos"
+							]
+						}
 					},
 					"response": []
 				},
